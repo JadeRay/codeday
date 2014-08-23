@@ -1,0 +1,74 @@
+
+\documentclass[margin,11pt]{res} % default is 10 pt
+% margin option puts section titles to left of text
+%\usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
+%\usepackage{newcent}   % uses new century schoolbook postscript font
+\usepackage{CJK}
+
+\newcommand{\resitem}[1]{
+	\vspace{-4pt}
+	\item \begin{flushleft} #1 \end{flushleft}
+}
+
+\begin{document}
+\begin{CJK*}{GBK}{fs}
+\name{钱玉磊\\[12pt]} % the \\[12pt] adds a blank line after name
+
+\address{  {\bf 基本信息} \\ 男（24岁） 汉族 \\ jade.ray.tsien@gmail.com\\
+        13121409520}
+%\address{ {\bf 通讯地址} \\ 沈阳市东陵区南屏东路16号 \\ 110168}
+\address{ {\bf 应聘职位} \\ 技术培训生（大数据方向）  }
+
+\begin{resume}
+
+
+%\section{应聘职位}       软件研发工程师 ~~~~~~~ 北京
+
+\section{教育背景}       中科院沈阳计算所 {} ~~~~~~~软件工程硕士 ~~~ 2012.09 - 2015.07 ~~ 推荐免试研究生\\
+                郑州大学 {} ~~~~~~~计算机科学与技术学士 ~~~ 2008.09 - 2012.07 ~~ GPA: 3.4/4.0
+\section{专业技能}       \begin{itemize}
+                \item 熟练使用Win32（Visual Studio、SVN等）和Linux（Vim、GDB等）平台开发和调试工具
+                \item 熟练掌握C/C++，熟练使用STL，熟悉面向对象开发技术
+                \item 熟悉MySQL，了解Redis
+                \item 熟练掌握基本的算法和数据结构
+                %了解并能使用基本的设计模式 \\
+                \item 熟悉Python、Shell、\LaTeX{}
+                \end{itemize}
+
+\section{项目经历}       中科院沈阳计算所研发中心 \\
+                \begin{ncolumn}{2} % produces two equally spaced columns
+                \underline{PC客户端开发}     &      2014.03-2014.06
+                \end{ncolumn}
+
+                中国移动第二代通信服务器产品——PC客户端。该项目是一个基于windows平台的融合通信客户端，我主要负责底层信令栈的设计和实现，任务包括：
+                \begin{itemize}
+                \item Presence/IM框架的设计和实现，主要使用了IBM开发的MQTT协议
+                \item 个人通讯录树形架构的实现
+                \item 个人信息本地加密存储
+                \item WebService接口调用部分的实现，在这部分主要使用了一个单例模式来支持并发的设计
+                \end{itemize}
+
+                %{\bf 中国科学院计算技术研究所体系结构国家重点实验室} \\
+                中科院计算所体系结构国家重点实验室 \\
+                \begin{ncolumn}{2} % produces two equally spaced columns
+                \underline{三维可记忆芯片演示系统的开发} &   2012.09-2013.07
+                \end{ncolumn}
+
+                我负责该项目的第一期，主要是设计一个可以掉电存储计算过程的单片机系统。使用的是C8051单片机和嵌入式C语言。主要的功能部件涉及显示屏的控制和光伏电池板的使用等。
+
+\section{所获荣誉}          三好学生，中国科学院大学研究生院，2013.06 \\
+                全国大学生数学建模大赛省三等奖，郑州大学，2010.11 \\
+                三等奖学金，郑州大学，2010/2011年度 \\
+                二等奖学金，郑州大学，2008/2009年度
+\section{其他经历}      媒体同步服务器的开发（Linux平台，C语言+MySQL，2013.10-2013.11）\\
+                校园网站设计（负责任务安排及技术支持，JSP+Java+MySQL，2011.07）\\
+                良好的外语水平，英语（CET6）
+                %基于JSP+MySQL的网上书店设计（数据库课程设计，2010.11）
+\end{resume}
+\end{CJK*}
+\end{document}
+
+
+
+
+
