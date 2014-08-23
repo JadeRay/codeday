@@ -1,4 +1,7 @@
 #!/usr/bin/python
+'''This will generate an obscene math graph.
+   Package needed: numpy, matplotlib
+'''
 
 import matplotlib.pyplot as plt
 import math as math
