@@ -9,3 +9,7 @@ SSSP_Dijkstra.cpp #单源最短路径，Dijkstra算法，邻接矩阵，带前�
 
 hdj1875_MSpanningTree_Prim.cpp #最小生成树问题，Prim算法，邻接矩阵
 MinimumSpanningTree_Kruskal.cpp #最小生成树问题，Kruskal算法，并查集，hdj1232
+
+
+#字符串算法
+hdj3068_longest_sub_plalindrome	#最长回文子串，Manacher算法，仅仅返回最长回文子串的长度
