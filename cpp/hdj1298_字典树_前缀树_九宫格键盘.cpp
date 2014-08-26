@@ -5,24 +5,35 @@
 #include <cstdio>
 #include <string.h>
 #include <vector>
+#include <map>
 using namespace std;
+const int MaxWordLen = 100 + 1;
+char tel[8][5]={"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+int press[MaxWordLen] ;
+char output[MaxWordLen];
 
 typedef struct node
 {
    char value;
    int nCount;
    bool isWord;    //to extend
-   struct node* fChild;
-   struct node* brother;
-   node():nCount(0), isWord(false), fChild(NULL), brother(NULL){}
+   node* fChild;
+   node* brother[MaxWordLen];
+   int brotherSize;
+   node():nCount(0), isWord(false), fChild(NULL), brotherSize(0){}
+   node(char ch, int freq):nCount(freq), isWord(false), fChild(NULL), brotherSize(0), value(ch){}
    ~node()
    {
        if(fChild) delete fChild;
        fChild = NULL;
-       if(brother) delete brother;
-       brother = NULL;
+       for(int i = 0 ; i < brotherSize ; ++i) delete brother[i];
    }
 }node;
+
+bool compare(const node* p1, const node* p2)
+{
+    return p1->nCount > p2->nCount;  //降序，如果改成小于号，则升序
+}
 
 class Trie
 {
@@ -51,16 +62,23 @@ public:
 //出现，则返回TRUE，同时now指向出现该字符的节点
 //不出现，则返回FALSE，同时now指向本层的最后一个节点（便于将该字符插入到本层最后）
 //如果now为null，则表明该层尚没有节点
-    bool findInLevel(node* q, node** now, char ch)
+    bool findInLevel(node* root, node** now, char ch)
     {
-       node* p = q;
-       while(p)
-       {
-               *now = p ;
-               if(p->value != ch) p = p->brother;
-               else return true;
-       }
-       return false;
+        if(root->brotherSize == 0)
+        {
+            now = NULL;
+            return false;
+        }
+        for(int i = 0 ; i < root->brotherSize ; ++i)
+        {
+            if(root->brother[i]->value == ch)
+            {
+                now = root->brother[i];
+                return true;
+            }
+        }
+        now = root->brother[root->brotherSize-1];
+        return false;
     }
  //返回以给定字符串为前缀的字符串的个数
     bool isWord(const char* str)
@@ -80,34 +98,63 @@ public:
 
     void insert(char* str, int freq)
     {
-
-    }
-    void insert(char* str)
-    {
-        _insert(Tree, str);
-    }
-//插入创建字典树（前缀树）
-    void _insert(node* root, char* str)
-    {
         int i = 0;
-        struct node* pNowLevel = root;
+        node* pNowLevel = root;
         while(i < strlen(str))
         {
              node* now = NULL;
-             if(!findInLevel(pNowLevel->fChild, &now, str[i]))
+             if(!findInLevel(pNowLevel, &now, str[i]))
              {
-                 node* pNode = new node();
-                 if(now) now->brother = pNode;
+                 node* pNode = new node(str[i], freq);
+                 if(now) pNowLevel->fChild->brother[pNowLevel->fChild->brotherSize ++] = pNode;
                  else pNowLevel->fChild = pNode;
-                 pNode->value = str[i];
                  now = pNode;
+             }
+             else
+             {
+                 now->nCount += freq;
              }
              if(i == strlen(str)-1) now->isWord = true;
              pNowLevel = now;
-             i++;
+             ++i;
         }
     }
+
+    void find(int len)
+    {
+        memcpy(output, 0, sizeof(char)*MaxWordLen);
+        char* pout = output;
+        bool isFind = false;
+        for(int i = 0;i < len; ++i)
+        {
+            if(_find(root->fChild, 0, len, pout))
+            {
+                isFind = true;
+                break;
+            }
+
+        }
+        if(isFind) cout<<output<<endl;;
+        else cout<<"MANUALLY"<<endl;
+    }
+
+    bool _find(node* nowLevel, int index, int len, char* pout)
+    {
+        if(nowLevel == NULL && index < len) return false;
+        if(index >= len) return true;
+        sort(nowLevel->brother, nowLevel->brother + nowLevel->brotherSize, compare);
+        for(int i = 0; i < nowLevel->brotherSize ; ++i)
+        {
+            *pout = nowLevel->brother[i]->value;
+            if(num(nowLevel->brother[i]->value) == pres[index])
+            {
+                if(_find(nowLevel->brother[i]->fChild, ++index, len, ++pout))  return true;
+            }
+        }
+        return false;
+    }
 };
+
 
 
 int main()
@@ -118,6 +165,8 @@ int main()
     cin>>scenario;
     for(int i = 1 ; i <= scenario ; ++i)
     {
+        tree.clear();
+        cout<<"Scenario #"<<i<<":"<<endl;
         int n;
         cin>>n;
         for(int j = 1; j <= n ; ++j)
@@ -125,15 +174,16 @@ int main()
             char word[26];
             int freq;
             cin>>word>>freq;
-
+            tree.insert(word, freq);
         }
+        int m;
+        cin>>m;
+        int len = 0 ;
+        while(cin>>press[len] && press[len] != 1) ++len;
+        for(int j = 0 ; j < len ; ++j) tree.find(j+1);
     }
-    vector<string> data;
-    while(scanf("%s", word)!=EOF)
-    {
-           tree.insert(word);
-           data.push_back(string(word));
-    }
+
+
 
     return 0;
 }
