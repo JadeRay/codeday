@@ -6,12 +6,24 @@
 #include <string.h>
 #include <vector>
 #include <map>
+#include <algorithm>
 using namespace std;
 const int MaxWordLen = 100 + 1;
 char tel[8][5]={"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 int press[MaxWordLen] ;
 char output[MaxWordLen];
 
+int num(char ch)
+{
+    for(int i = 0 ; i < 8 ; ++i)
+    {
+        for(int j = 0 ; j < 5 ; ++j)
+        {
+            if(tel[i][j] == ch) return i+1;
+        }
+    }
+    return 0;
+}
 typedef struct node
 {
    char value;
@@ -73,11 +85,11 @@ public:
         {
             if(root->brother[i]->value == ch)
             {
-                now = root->brother[i];
+                *now = root->brother[i];
                 return true;
             }
         }
-        now = root->brother[root->brotherSize-1];
+        *now = root->brother[root->brotherSize-1];
         return false;
     }
  //返回以给定字符串为前缀的字符串的个数
@@ -99,7 +111,7 @@ public:
     void insert(char* str, int freq)
     {
         int i = 0;
-        node* pNowLevel = root;
+        node* pNowLevel = Tree;
         while(i < strlen(str))
         {
              node* now = NULL;
@@ -123,30 +135,29 @@ public:
     void find(int len)
     {
         memcpy(output, 0, sizeof(char)*MaxWordLen);
-        char* pout = output;
+        int  pout = 0;
         bool isFind = false;
         for(int i = 0;i < len; ++i)
         {
-            if(_find(root->fChild, 0, len, pout))
+            if(_find(Tree->fChild, 0, len, pout))
             {
                 isFind = true;
                 break;
             }
-
         }
-        if(isFind) cout<<output<<endl;;
+        if(isFind) cout<<output<<endl;
         else cout<<"MANUALLY"<<endl;
     }
 
-    bool _find(node* nowLevel, int index, int len, char* pout)
+    bool _find(node* nowLevel, int index, int len, int pout)
     {
         if(nowLevel == NULL && index < len) return false;
         if(index >= len) return true;
         sort(nowLevel->brother, nowLevel->brother + nowLevel->brotherSize, compare);
         for(int i = 0; i < nowLevel->brotherSize ; ++i)
         {
-            *pout = nowLevel->brother[i]->value;
-            if(num(nowLevel->brother[i]->value) == pres[index])
+            output[pout] = nowLevel->brother[i]->value;
+            if(num(nowLevel->brother[i]->value) == press[index])
             {
                 if(_find(nowLevel->brother[i]->fChild, ++index, len, ++pout))  return true;
             }
