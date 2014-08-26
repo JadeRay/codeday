@@ -74,11 +74,13 @@ public:
 //出现，则返回TRUE，同时now指向出现该字符的节点
 //不出现，则返回FALSE，同时now指向本层的最后一个节点（便于将该字符插入到本层最后）
 //如果now为null，则表明该层尚没有节点
+//root为当前层父节点
     bool findInLevel(node* root, node** now, char ch)
     {
+        if(!root || !root->fChild) return false;
+        root = root->fChild;
         if(root->brotherSize == 0)
         {
-            now = NULL;
             return false;
         }
         for(int i = 0 ; i < root->brotherSize ; ++i)
@@ -107,7 +109,7 @@ public:
         if(i>=strlen(str) ) return root->isWord;
         else return false;
     }
-
+    //逻辑上有问题，需要重新考虑
     void insert(char* str, int freq)
     {
         int i = 0;
