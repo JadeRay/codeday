@@ -13,3 +13,12 @@ MinimumSpanningTree_Kruskal.cpp #最小生成树问题，Kruskal算法，并查�
 
 #字符串算法
 hdj3068_longest_sub_plalindrome	#最长回文子串，Manacher算法，仅仅返回最长回文子串的长度
+hdj3294_longest_sub_plalindrome #最长回文子串，Manacher算法，包括记录回文子串的位置
+hdj1247_字典树_查找				#字典树（或Trie树），用类封装了一下，可以直接拿来使用
+hdj1251_前缀树_字典树			#前缀树（字典树），查找给定单词集中，某一前缀的出现频次
+hdj1671_字典树_前缀树			#字典树，前缀树，判断单词集中是否存在一个单词是另一个单词的前缀
+
+
+#数学问题
+hdj1722_分蛋糕		#数学问题
+hdj1724_自适应Simpson算法求积分		#求两条平行于y轴的竖线与椭圆相交的部分的面积，自适应Simpson算法

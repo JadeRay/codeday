@@ -1,0 +1,100 @@
+% Andrew McNabb's Resume
+% Created: 7 Jan 2004
+% Last Modified: 17 Jul 2004
+
+\documentclass[11pt,oneside]{article}
+\usepackage{geometry}
+\usepackage[colorlinks,linkcolor=red]{hyperref} %for href command
+\usepackage[T1]{fontenc}
+\usepackage{CJK}
+\pagestyle{empty}
+\geometry{letterpaper,tmargin=0.75in,bmargin=0.75in,lmargin=0.85in,rmargin=0.85in,headheight=0in,headsep=0in,footskip=.3in}
+
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New commands and environments
+
+\newcommand{\cvtitle}[5]{
+{\huge\bfseries\scshape #1}
+\vspace{1em}\\
+\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+#2 & #4 \\
+#3 & #5 \\
+\end{tabular*}
+\vspace{3pt}
+\rule{\textwidth}{.75pt}}
+
+\makeatletter
+\renewcommand{\section}{\@startsection
+{section}
+{12}
+{\z@}
+{0.2\baselineskip}
+{0.1\baselineskip}
+{\normalfont\large\scshape\bfseries}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now for the actual document:
+
+\begin{document}
+
+\begin{CJK*}{GBK}{fs}
+
+\cvtitle{钱玉磊-（C++开发工程师J2606）}{男，24岁} {沈阳市东陵区南屏东路16号，110168} {Tel：13121409520} 
+{Email： \href{mailto:jade.ray.tsien@gmail.com}{jade.ray.tsien@gmail.com}}
+
+%\section*{应聘岗位}
+%\hspace*{2cm} C++开发工程师J2606
+\section*{教育背景}
+\hspace*{2cm} 2012.09 - 2015.07 ~~中科院沈阳计算所  ~~~~~~~~~~~~~软件工程硕士 ~~~~  推荐免试研究生\\
+\hspace*{2cm} 2008.09 - 2012.07 ~~郑州大学  ~~~~~~~~~~~~~计算机科学与技术学士 ~~~~  GPA: 3.4/4.0
+\section*{专业技能}
+    \begin{itemize}
+        \item 熟练使用Win32（Visual Studio、SVN等）和Linux（Vim、GDB、Git等）平台开发和调试工具
+        \item 熟练掌握C/C++，熟练掌握STL和面向对象开发技术
+        \item 熟悉MySQL，了解Redis
+        \item 熟练掌握基本的算法和数据结构
+        %了解并能使用基本的设计模式 \\
+        \item 熟悉Python、Shell、\LaTeX{}
+    \end{itemize}
+\section*{项目和实习经历}
+ 2014.03 - 2014.06 ~~~~ 中科院沈阳计算所研发中心 ~~~ \underline{中国移动融合通信PC客户端开发} \\
+\hspace*{0.68cm} 该项目是一个基于windows平台的融合通信客户端，主要功能包括即时消息、状态呈现、IP通信和企业通信录等。我主要负责PC客户端的即时消息和状态呈现等部分，设计和实现了通信信令栈。具体任务包括：
+            \begin{itemize}
+            \item Presence/IM框架的设计和实现，主要使用了IBM开发的MQTT协议
+            \item 个人通讯录树形架构的实现
+            \item 个人信息本地加密存储
+            \item WebService接口调用部分和json数据解析及封装的实现，在这部分主要使用了一个单例模式来支持并发和异步的操作
+            \end{itemize}
+                %{\bf 中国科学院计算技术研究所体系结构国家重点实验室} \\
+2012.09 - 2013.07 ~~~~ 中科院计算所体系结构国家重点实验室 ~~~\underline{三维可记忆芯片演示系统的开发} \\
+\hspace*{0.68cm} 我负责该项目的第一期，主要是设计一个可以掉电存储计算过程的单片机系统。使用的是C8051单片机和嵌入式C语言。主要的功能部件涉及显示屏的控制和光伏电池板的使用等。\\
+\section*{所获荣誉}
+\begin{itemize}
+\item 三好学生，中国科学院大学研究生院，2013.06
+\item 全国大学生数学建模大赛省三等奖，郑州大学，2010.11
+\item 三等奖学金，郑州大学，2010年度和2011年度
+\item 二等奖学金，郑州大学，2008年度和2009年度
+\end{itemize}
+%    三好学生，中国科学院大学研究生院，2013.06 \\
+%    全国大学生数学建模大赛省三等奖，郑州大学，2010.11 \\
+%    三等奖学金，郑州大学，2010/2011年度 \\
+%    二等奖学金，郑州大学，2008/2009年度
+\section*{实践经历及外语水平}
+\hspace*{0.68cm}   良好的外语水平，英语（CET6）\\
+\hspace*{0.68cm}   媒体同步服务器的开发（Linux平台，C + MySQL，2013.10 - 2013.11）\\
+\hspace*{0.68cm}   校园网站设计（JSP + Java + MySQL，2011.07）\\
+\hspace*{0.68cm}   研究生期间，指导沈阳师范大学三名本科生的毕业设计（2013.11 - 2014.05），包括给学生拟定题目、督促学生的学习和检查毕设完成情况。\\
+\hspace*{0.68cm}   较强的逻辑分析能力和沟通能力。在本科毕业实习中，带领一个五人团队执行一个完整的网站开发流程。\\
+\hspace*{0.68cm}   本科期间担任校书法社宣传部干事，负责院系每天的查寝工作，工作认真，积极负责。
+\end{CJK*}
+\end{document}
+
+
