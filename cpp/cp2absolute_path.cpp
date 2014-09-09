@@ -1,3 +1,4 @@
+//相对路径转绝对路径
 #include <iostream>
 #include <vector>		// for vector
 #include <string>		// for string , find, substr
@@ -8,14 +9,14 @@ string
 cp2ap (const string & cp_str)
 {
   StrVec vec;
-  vec.resize (100);		//resize not reserve, resize will allocate memory for elements
+  vec.resize (100);		//这个地方必须用resize，因为resize有初始化，而reserve没有
   int front = 0;
   char ifs = '/';
   int pos1 = 0;
   int pos2 = 0;
   int len = cp_str.length ();
-  string back ("/..");
-  string now ("/.");
+  string back ("/.."); //退回上一级
+  string now ("/."); //当前目录
   while (pos1 < len && pos1 != cp_str.npos)
     {
       pos2 = cp_str.find (ifs, pos1 + 1);
@@ -30,7 +31,9 @@ cp2ap (const string & cp_str)
 	}
       //cout<<tmp<<endl;
       if (tmp == back)
-	--front;
+	{
+		--front;
+	}
       else if (tmp != now)
 	{
 	  vec[front++] = tmp;	// only if front < vec.size()
