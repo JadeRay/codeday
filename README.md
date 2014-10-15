@@ -1,4 +1,4 @@
 codeday
 =======
 
-My everyday code store. Not for project.
+My everyday code repository. Not for project.
